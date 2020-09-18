@@ -13,16 +13,16 @@ namespace NUnitTestMoodAnalyser
         [Test]
         public void WhenGivenSadMessageShouldReturnSad()
         {
-            MoodAnalyserMain m = new MoodAnalyserMain();
-            string result = m.getMood("sad");
+            MoodAnalyserMain m = new MoodAnalyserMain("i am in sad mood");
+            string result = m.getMood(); ;
             Assert.AreEqual("SAD", result);
         }
 
         [Test]
         public void WhenGivenHappyMessageShouldReturnHappy()
         {
-            MoodAnalyserMain m = new MoodAnalyserMain();
-            string result = m.getMood("any");
+            MoodAnalyserMain m = new MoodAnalyserMain("i am in any mood");
+            string result = m.getMood();
             Assert.AreEqual("HAPPY", result);
         }
     }
