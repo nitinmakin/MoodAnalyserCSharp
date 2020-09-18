@@ -8,8 +8,9 @@ namespace MoodAnalyserProblem
     {
         public enum ExceptionType
         {
-            INVALID_INPUT
-
+            INVALID_INPUT,
+            ENTERED_EMPTY,
+            ENTERED_NULL
         }
 
         public ExceptionType type;

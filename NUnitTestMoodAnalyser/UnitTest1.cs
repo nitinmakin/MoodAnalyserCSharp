@@ -41,11 +41,17 @@ namespace NUnitTestMoodAnalyser
         }
 
         [Test]
-        public void WhenGivenNullMessageShouldReturnHappy()
+        public void WhenGivenNullMessageShouldThrowMoodAnalyserException()
         {
-            MoodAnalyserMain m = new MoodAnalyserMain("");
-            string result = m.getMood();
-            Assert.AreEqual("HAPPY", result);
+            try
+            {
+                MoodAnalyserMain m = new MoodAnalyserMain(null);
+                string result = m.getMood();
+            }
+            catch (MoodAnalyserException e)
+            {
+               Assert.AreEqual(MoodAnalyserException.ExceptionType.ENTERED_NULL, e.type);
+            }
         }
     }
 }

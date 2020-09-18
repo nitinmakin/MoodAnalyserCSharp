@@ -14,10 +14,27 @@ namespace MoodAnalyserProblem
         }
         public string getMood()
         {
-            if (message.Contains("sad"))
-                return "SAD";
-            else
-                return "HAPPY";
+            try
+            {
+                if (message.Length == 0)
+
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "you have entered invalid input");
+
+                if (message.Equals(null))
+
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_NULL, "you have entered invalid input");
+
+                if (message.Contains("sad"))
+
+                    return "SAD";
+
+                else
+
+                    return "HAPPY";
+            }catch(Exception e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_NULL, "you have entered invalid input");
+            }
         }
 
     }
