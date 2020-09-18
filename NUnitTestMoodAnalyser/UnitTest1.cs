@@ -40,12 +40,12 @@ namespace NUnitTestMoodAnalyser
             }
         }
 
-      /*  [Test]
+        [Test]
         public void WhenGivenNullMessageShouldReturnHappy()
         {
             MoodAnalyserMain m = new MoodAnalyserMain("");
             string result = m.getMood();
             Assert.AreEqual("HAPPY", result);
-        }*/
+        }
     }
 }
