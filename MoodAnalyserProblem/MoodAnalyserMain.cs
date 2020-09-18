@@ -20,10 +20,6 @@ namespace MoodAnalyserProblem
 
                     throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "you have entered invalid input");
 
-                if (message.Equals(null))
-
-                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_NULL, "you have entered invalid input");
-
                 if (message.Contains("sad"))
 
                     return "SAD";
@@ -31,7 +27,7 @@ namespace MoodAnalyserProblem
                 else
 
                     return "HAPPY";
-            }catch(Exception e)
+            }catch(NullReferenceException e)
             {
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_NULL, "you have entered invalid input");
             }

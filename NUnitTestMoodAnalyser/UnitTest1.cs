@@ -50,7 +50,21 @@ namespace NUnitTestMoodAnalyser
             }
             catch (MoodAnalyserException e)
             {
-               Assert.AreEqual(MoodAnalyserException.ExceptionType.ENTERED_NULL, e.type);
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.ENTERED_NULL, e.type);
+            }
+        }
+
+        [Test]
+        public void WhenGivenEmptyMessageShouldThrowMoodAnalyserException()
+        {
+            try
+            {
+                MoodAnalyserMain m = new MoodAnalyserMain("");
+                string result = m.getMood();
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, e.type);
             }
         }
     }
