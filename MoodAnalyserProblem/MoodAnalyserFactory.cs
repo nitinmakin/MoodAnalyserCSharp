@@ -9,10 +9,16 @@ namespace MoodAnalyserProblem
     {
         public static MoodAnalyserMain GetMoodAnalyserObject(string className )
         {
-           Assembly excutingAssambly = Assembly.GetExecutingAssembly();
-           Type type = excutingAssambly.GetType(className);
-           MoodAnalyserMain MoodAnalyserMainObject = (MoodAnalyserMain)Activator.CreateInstance(type);
-           return MoodAnalyserMainObject;
+            try
+            {
+                Assembly excutingAssambly = Assembly.GetExecutingAssembly();
+                Type type = excutingAssambly.GetType(className);
+                MoodAnalyserMain MoodAnalyserMainObject = (MoodAnalyserMain)Activator.CreateInstance(type);
+                return MoodAnalyserMainObject;
+            }catch(Exception e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.INVALID_INPUT, "invalid input");
+            }
         }
     }
 }

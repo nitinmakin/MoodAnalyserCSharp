@@ -73,13 +73,28 @@ namespace NUnitTestMoodAnalyser
         {
             try
             {
-                MoodAnalyserMain obj =  MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyserMain");
+                MoodAnalyserMain obj = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyserMain");
                 MoodAnalyserMain m = new MoodAnalyserMain();
                 Assert.IsTrue(obj.ToString().Equals(m.ToString()));
             }
             catch (MoodAnalyserException e)
             {
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY,"wrong file");
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "wrong file");
+            }
+        }
+        [Test]
+        public void WhenGivenMoodAnalyserWithWrongNameShouldReturnMoodAnalyserObject()
+        {
+            try
+            {
+                MoodAnalyserMain obj = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyserMainabc");
+                MoodAnalyserMain m = new MoodAnalyserMain();
+                
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT,e.type);
+               
             }
         }
     }
