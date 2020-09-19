@@ -83,7 +83,7 @@ namespace NUnitTestMoodAnalyser
             }
         }
         [Test]
-        public void WhenGivenMoodAnalyserWithWrongNameShouldReturnMoodAnalyserObject()
+        public void WhenGivenMoodAnalyserWithWrongNameShouldThrowMoodAnalyserException()
         {
             try
             {
