@@ -69,9 +69,8 @@ namespace MoodAnalyserProblem
                 return reflectionGenratedObject;
             }
             catch (Exception e)
-            {
-                e.GetType();
-                return new MoodAnalyserException(MoodAnalyserException.ExceptionType.INVALID_INPUT,"invalid input");
+            {                
+               return new MoodAnalyserException(MoodAnalyserException.ExceptionType.INVALID_INPUT,"invalid input");
             }
 
         }
