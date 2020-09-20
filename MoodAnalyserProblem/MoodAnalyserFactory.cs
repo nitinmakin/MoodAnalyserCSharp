@@ -44,7 +44,7 @@ namespace MoodAnalyserProblem
                 foreach (ConstructorInfo index in constructor)
                 {
                     int numberOfParam = index.GetParameters().Length;
-                    while (numberOfParam == noOfParameters)
+                    if (numberOfParam == noOfParameters)
                     {
                         return index;
                     }
@@ -74,7 +74,7 @@ namespace MoodAnalyserProblem
             }
 
         }
-        public object InstanceCreator(string className, ConstructorInfo constructor, string message)
+        public static object InstanceCreator(string className, ConstructorInfo constructor, string message)
         {
             try
             {

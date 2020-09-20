@@ -78,14 +78,13 @@ namespace NUnitTestMoodAnalyser
                 ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator();
                 MoodAnalyserMain obj = (MoodAnalyserMain)MoodAnalyserFactory.InstanceCreator
                 ("MoodAnalyserProblem.MoodAnalyserMain", constructorInfo);
-                MoodAnalyserMain m = new MoodAnalyserMain();
                 Assert.IsInstanceOf(typeof(MoodAnalyserMain), obj);
                 Console.WriteLine("try");
             }
             catch (MoodAnalyserException e)
             {
-              
- throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "wrong file");
+
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "wrong file");
             }
         }
         [Test]
@@ -113,7 +112,7 @@ namespace NUnitTestMoodAnalyser
                 String className = "MoodAnalyser";
                 ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator(className);
                 MoodAnalyserMain obj = (MoodAnalyserMain)MoodAnalyserFactory.InstanceCreator
-                    ("MoodAnalyserProblem.MoodAnalyserMain",constructorInfo);
+                    ("MoodAnalyserProblem.MoodAnalyserMain", constructorInfo);
                 MoodAnalyserMain m = new MoodAnalyserMain("abc");
             }
             catch (MoodAnalyserException e)
@@ -121,5 +120,22 @@ namespace NUnitTestMoodAnalyser
                 Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.type);
             }
         }
+        [Test]
+        public void WhenGivenMoodAnalyser_WithParameterConstructor_ProperNameShouldReturnMoodAnalyserObject()
+        {
+            try
+            { 
+                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator(3);
+                MoodAnalyserMain obj = (MoodAnalyserMain)MoodAnalyserFactory.InstanceCreator
+                ("MoodAnalyserProblem.MoodAnalyserMain", constructorInfo, "i am in happy mood");
+                Assert.IsInstanceOf(typeof(MoodAnalyserMain), obj);
+            }
+            catch (MoodAnalyserException e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "wrong file");
+            }
+        }
+
+
     }
 }
