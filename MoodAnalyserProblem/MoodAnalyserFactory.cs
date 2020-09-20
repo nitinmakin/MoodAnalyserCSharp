@@ -85,7 +85,7 @@ namespace MoodAnalyserProblem
             }
             catch (Exception e)
             {
-                return e.Message;
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.Message);
             }
         }
     }

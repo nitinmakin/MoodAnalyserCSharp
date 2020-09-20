@@ -124,7 +124,7 @@ namespace NUnitTestMoodAnalyser
         public void WhenGivenMoodAnalyser_WithParameterConstructor_ProperNameShouldReturnMoodAnalyserObject()
         {
             try
-            { 
+            {
                 ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator(3);
                 MoodAnalyserMain obj = (MoodAnalyserMain)MoodAnalyserFactory.InstanceCreator
                 ("MoodAnalyserProblem.MoodAnalyserMain", constructorInfo, "i am in happy mood");
@@ -133,6 +133,21 @@ namespace NUnitTestMoodAnalyser
             catch (MoodAnalyserException e)
             {
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "wrong file");
+            }
+        }
+        [Test]
+        public void WhenGivenMoodAnalyser_WithParameterConstructor_WrongClass_NameShouldThrowMoodAnalyserException()
+        {
+            try
+            {
+                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator();
+                MoodAnalyserMain obj = (MoodAnalyserMain)MoodAnalyserFactory.InstanceCreator
+                ("MoodAnalyserProblem.MoodAnalyserMain123", constructorInfo, "i am in happy mood");
+               
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.type);
             }
         }
 
