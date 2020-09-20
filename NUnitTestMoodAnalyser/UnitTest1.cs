@@ -112,7 +112,7 @@ namespace NUnitTestMoodAnalyser
                 String className = "MoodAnalyser";
                 ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator(className);
                 MoodAnalyserMain obj = (MoodAnalyserMain)MoodAnalyserFactory.InstanceCreator
-                    ("MoodAnalyserProblem.MoodAnalyserMain", constructorInfo);
+                ("MoodAnalyserProblem.MoodAnalyserMain", constructorInfo);
                 MoodAnalyserMain m = new MoodAnalyserMain("abc");
             }
             catch (MoodAnalyserException e)
@@ -143,14 +143,29 @@ namespace NUnitTestMoodAnalyser
                 ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator();
                 MoodAnalyserMain obj = (MoodAnalyserMain)MoodAnalyserFactory.InstanceCreator
                 ("MoodAnalyserProblem.MoodAnalyserMain123", constructorInfo, "i am in happy mood");
-               
+
             }
             catch (MoodAnalyserException e)
             {
                 Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.type);
             }
         }
+        [Test]
+        public void WhenGivenMoodAnalyser_WithParameterConstructor_WhenWrongConstructor_NameShouldThrowMoodAnalyserException()
+        {
+            try
+            {
+                String className = "MoodAnalyser";
+                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator(className);
+                MoodAnalyserMain obj = (MoodAnalyserMain)MoodAnalyserFactory.InstanceCreator
+                ("MoodAnalyserProblem.MoodAnalyserMain123", constructorInfo, "i am in happy mood");
 
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.type);
+            }
+        }
 
     }
 }
