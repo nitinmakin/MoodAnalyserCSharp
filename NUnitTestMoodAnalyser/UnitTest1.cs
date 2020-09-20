@@ -18,7 +18,7 @@ namespace NUnitTestMoodAnalyser
             try
             {
                 MoodAnalyserMain m = new MoodAnalyserMain("i am in sad mood");
-                string result = m.getMood(); ;
+                string result = m.AnalyseMood(); 
                 Assert.AreEqual("SAD", result);
             }
             catch (MoodAnalyserException e)
@@ -33,7 +33,7 @@ namespace NUnitTestMoodAnalyser
             try
             {
                 MoodAnalyserMain m = new MoodAnalyserMain("i am in any mood");
-                string result = m.getMood();
+                string result = m.AnalyseMood();
                 Assert.AreEqual("HAPPY", result);
             }
             catch (MoodAnalyserException e)
@@ -48,7 +48,7 @@ namespace NUnitTestMoodAnalyser
             try
             {
                 MoodAnalyserMain m = new MoodAnalyserMain(null);
-                string result = m.getMood();
+                string result = m.AnalyseMood();
             }
             catch (MoodAnalyserException e)
             {
@@ -62,7 +62,7 @@ namespace NUnitTestMoodAnalyser
             try
             {
                 MoodAnalyserMain m = new MoodAnalyserMain("");
-                string result = m.getMood();
+                string result = m.AnalyseMood();
             }
             catch (MoodAnalyserException e)
             {
@@ -164,6 +164,19 @@ namespace NUnitTestMoodAnalyser
             catch (MoodAnalyserException e)
             {
                 Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.type);
+            }
+        }
+        [Test]
+        public void WhenGivenHappyMessage_UsingReflection_ShouldReturnHappy()
+        {
+            try
+            {
+                string message = MoodAnalyserFactory.getMethod("MoodAnalyserProblem.MoodAnalyserMain", "getMood", "happy");
+                Assert.AreEqual("HAPPY", message);
+            }
+            catch (MoodAnalyserException e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "wrong file");
             }
         }
 
