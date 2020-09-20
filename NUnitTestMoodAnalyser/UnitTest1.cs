@@ -179,6 +179,17 @@ namespace NUnitTestMoodAnalyser
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "wrong file");
             }
         }
-
+        [Test]
+        public void WhenGivenHappyMessageUsingReflection_WhenImproperMethod_ShouldReturnHappy()
+        {
+            try
+            {
+                string message = MoodAnalyserFactory.getMethod("MoodAnalyserProblem.MoodAnalyserMain", "WrongMethodName", "happy");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.type);           
+            }
+        }
     }
 }
