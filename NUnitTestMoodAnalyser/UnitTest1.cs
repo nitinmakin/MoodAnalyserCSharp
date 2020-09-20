@@ -191,5 +191,23 @@ namespace NUnitTestMoodAnalyser
                 Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.type);           
             }
         }
+        [Test]
+        public void Change_Mood_Dynamically()
+        {
+            dynamic result = MoodAnalyserFactory.ChangeTheMood("MoodAnalyserProblem.MoodAnalyserMain", "happy");
+            Assert.AreEqual("HAPPY", result);
+        }
+        [Test]
+        public void ChangeMoodDynamically_WhenNull_ShouldThrowException()
+        {
+            try
+            {
+                dynamic result = MoodAnalyserFactory.ChangeTheMood("MoodAnalyserProblem.MoodAnalyserMain", null);
+            }catch(MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.ENTERED_NULL, e.type);
+            }
+        }
+
     }
 }
