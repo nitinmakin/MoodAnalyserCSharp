@@ -1,5 +1,7 @@
 using MoodAnalyserProblem;
 using NUnit.Framework;
+using System;
+using System.Reflection;
 
 namespace NUnitTestMoodAnalyser
 {
@@ -73,13 +75,17 @@ namespace NUnitTestMoodAnalyser
         {
             try
             {
-                MoodAnalyserMain obj = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyserMain");
+                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator();
+                MoodAnalyserMain obj = (MoodAnalyserMain)MoodAnalyserFactory.InstanceCreator
+                ("MoodAnalyserProblem.MoodAnalyserMain", constructorInfo);
                 MoodAnalyserMain m = new MoodAnalyserMain();
-                Assert.IsTrue(obj.ToString().Equals(m.ToString()));
+                Assert.IsInstanceOf(typeof(MoodAnalyserMain), obj);
+                Console.WriteLine("try");
             }
             catch (MoodAnalyserException e)
             {
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "wrong file");
+              
+ throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "wrong file");
             }
         }
         [Test]
@@ -87,14 +93,32 @@ namespace NUnitTestMoodAnalyser
         {
             try
             {
-                MoodAnalyserMain obj = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyserMainabc");
+                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator();
+                object obj = MoodAnalyserFactory.InstanceCreator("MoodAnalyserMain1234", constructorInfo);
                 MoodAnalyserMain m = new MoodAnalyserMain();
-                
+                Console.WriteLine("try");
             }
             catch (MoodAnalyserException e)
             {
-                Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT,e.type);
-               
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.type);
+                Console.WriteLine("catch");
+
+            }
+        }
+        [Test]
+        public void WhenGivenMoodAnalyserWithWrongConstructorShouldThrowMoodAnalyserException()
+        {
+            try
+            {
+                String className = "MoodAnalyser";
+                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator(className);
+                MoodAnalyserMain obj = (MoodAnalyserMain)MoodAnalyserFactory.InstanceCreator
+                    ("MoodAnalyserProblem.MoodAnalyserMain",constructorInfo);
+                MoodAnalyserMain m = new MoodAnalyserMain("abc");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.type);
             }
         }
     }
